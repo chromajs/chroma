@@ -1,6 +1,6 @@
 {
   "name": "@chromajs/compiler",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "The compiler powering Chroma, a library for integrating markdown anywhere.",
   "main": "dist/index.js",
   "scripts": {
@@ -10,17 +10,8 @@
   "author": "Chroma",
   "license": "MIT",
   "files": [
-    "dist/index.js",
-    "dist/index.d.ts",
-    "dist/utils/clean.js",
-    "dist/utils/clean.d.ts",
-    "dist/utils/parse.js",
-    "dist/utils/parse.d.ts",
-    "dist/utils/style.js",
-    "dist/utils/style.d.ts",
-    "themes/black.min.css",
-    "themes/dark.min.css",
-    "themes/light.min.css"
+    "dist/",
+    "themes/"
   ],
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
