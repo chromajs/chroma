@@ -22,7 +22,7 @@ const theme = process.argv[4];
 if (
   typeof srcDir !== 'string' ||
   typeof outDir !== 'string' ||
-  (theme !== 'dark' && theme !== 'light' && theme !== 'black')
+  (theme !== 'dark' && theme !== 'light' && theme !== 'dim')
 ) {
   throw new Error('invalid <srcdir>, <outdir>, or <theme> was given');
 }

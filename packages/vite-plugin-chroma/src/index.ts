@@ -2,7 +2,7 @@ import compile from '@chromajs/compiler';
 import path from 'node:path';
 
 export default function chroma(opts: {
-  theme: 'light' | 'dark' | 'black',
+  theme: 'light' | 'dark' | 'dim',
   exts: string[]
 }) {
   return {
