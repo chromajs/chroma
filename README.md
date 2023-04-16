@@ -36,10 +36,15 @@ import { defineConfig } from 'vite'
 import { compiler as chroma } from '@chromajs/vite-plugin-chroma'
 
 export default defineConfig({
-  plugins: [compiler({
-    theme: 'light', // light or dark or dim
-    exts: [".svelte", ".ts"] // which file types Chroma should parse
-  })],
+  plugins: [
+    {
+      ...compiler({
+        theme: 'light', // light or dark or dim
+        exts: [".svelte", ".ts"] // which file types Chroma should parse
+      }),
+      enforce: 'pre'
+    }
+  ],
 })
 ```
 
