@@ -33,12 +33,12 @@ After that, simply import the plugin to `vite.config.js` in the root directory:
 ```js
 // vite.config.js
 import { defineConfig } from 'vite'
-import { compiler as chroma } from '@chromajs/vite-plugin-chroma'
+import { chroma } from '@chromajs/vite-plugin-chroma'
 
 export default defineConfig({
   plugins: [
     {
-      ...compiler({
+      ...chroma({
         theme: 'light', // light or dark or dim
         exts: [".svelte", ".ts"] // which file types Chroma should parse
       }),
