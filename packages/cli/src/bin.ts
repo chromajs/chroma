@@ -6,9 +6,10 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  rmdirSync,
   writeFileSync,
 } from 'fs';
-import { join, parse } from 'path';
+import { join, parse, relative } from 'path';
 
 const [src, dist, theme] = process.argv.slice(2);
 
@@ -24,18 +25,32 @@ if (src === '-h' || src === '--help') {
 
 const exts = [...JSON.parse(readFileSync('.chromarc.json', 'utf-8')).exts];
 
-if (!existsSync(dist)) {
-  mkdirSync(dist);
-}
+existsSync(dist) ? rmdirSync(dist, { recursive: true }) : null;
+mkdirSync(dist);
 
-const files = readdirSync(src, { withFileTypes: true }).map(file => file.name);
+const processDir = (dir: string) => {
+  const files = readdirSync(dir, { withFileTypes: true });
 
-for (const file of files) {
-  const content = readFileSync(join(src, file), 'utf-8');
+  for (const file of files) {
+    if (file.isDirectory()) {
+      processDir(join(dir, file.name));
+    } else {
+      const content = readFileSync(join(dir, file.name), 'utf-8');
 
-  if (exts.includes(parse(file).ext)) {
-    writeFileSync(join(dist, file), compiler(content, { theme }));
-  } else {
-    writeFileSync(join(dist, file), content);
+      if (exts.includes(parse(file.name).ext)) {
+        mkdirSync(join(dist, relative(src, dir)), { recursive: true });
+
+        writeFileSync(
+          join(join(dist, relative(src, dir)), file.name),
+          compiler(content, { theme })
+        );
+      } else {
+        mkdirSync(join(dist, relative(src, dir)), { recursive: true });
+
+        writeFileSync(join(join(dist, relative(src, dir)), file.name), content);
+      }
+    }
   }
-}
+};
+
+processDir(src);
