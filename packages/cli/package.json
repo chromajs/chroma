@@ -1,6 +1,6 @@
 {
   "name": "@chromajs/cli",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "The CLI tool for Chroma.",
   "main": "dist/bin.js",
   "bin": {
@@ -10,6 +10,9 @@
     "dev": "tsc -d && node dist/bin.js",
     "build": "tsc -d"
   },
+  "files": [
+    "dist/"
+  ],
   "author": "Chroma",
   "license": "MIT",
   "publishConfig": {

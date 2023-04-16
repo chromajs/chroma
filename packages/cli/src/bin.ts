@@ -28,19 +28,14 @@ if (!existsSync(dist)) {
   mkdirSync(dist);
 }
 
-const files = readdirSync(src, { withFileTypes: true })
-  .filter(file => file.isFile())
-  .map(file => file.name);
+const files = readdirSync(src, { withFileTypes: true }).map(file => file.name);
 
 for (const file of files) {
-  const srcPath = join(src, file);
-  const distPath = join(dist, file);
-
-  const content = readFileSync(srcPath, 'utf-8');
+  const content = readFileSync(join(src, file), 'utf-8');
 
   if (exts.includes(parse(file).ext)) {
-    writeFileSync(distPath, compiler(content, { theme }));
+    writeFileSync(join(dist, file), compiler(content, { theme }));
   } else {
-    writeFileSync(distPath, content);
+    writeFileSync(join(dist, file), content);
   }
 }
