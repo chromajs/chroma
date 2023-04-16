@@ -1,6 +1,6 @@
 {
   "name": "@chromajs/cli",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "The CLI tool for Chroma.",
   "main": "dist/bin.js",
   "bin": {
