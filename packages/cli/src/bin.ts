@@ -29,7 +29,7 @@ if (!existsSync(dist)) {
 }
 
 const files = readdirSync(src, { withFileTypes: true })
-  .filter(file => file.isFile() && exts.includes(parse(file.name).ext))
+  .filter(file => file.isFile())
   .map(file => file.name);
 
 for (const file of files) {
