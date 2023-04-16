@@ -1,25 +1,26 @@
 {
   "name": "@chromajs/cli",
-  "version": "1.4.5",
-  "description": "The CLI compiler for Chroma, a library that lets you integrate markdown anywhere.",
-  "main": "bin/index.js",
+  "version": "1.4.7",
+  "description": "The CLI tool for Chroma.",
+  "main": "dist/bin.js",
   "bin": {
-    "chroma": "bin/index.js"
+    "chroma": "dist/bin.js"
   },
   "scripts": {
-    "dev": "node bin/index.js"
+    "dev": "tsc -d && node dist/bin.js",
+    "build": "tsc -d"
   },
-  "files": [
-    "bin/"
-  ],
   "author": "Chroma",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "preferGlobal": true,
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.4"
+  },
   "dependencies": {
     "@chromajs/compiler": "workspace:^"
-  },
-  "type": "module"
+  }
 }

@@ -16,6 +16,6 @@ const md = new Markdown({
   },
 });
 
-export default function parse(raw) {
+export default function parse(raw: string) {
   return md.render(raw);
 }

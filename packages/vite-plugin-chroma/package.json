@@ -1,18 +1,25 @@
 {
   "name": "@chromajs/vite-plugin-chroma",
-  "version": "1.4.5",
-  "description": "The Vite plugin for Chroma, a library for integrating markdown anywhere.",
-  "main": "src/index.js",
+  "version": "1.4.7",
+  "description": "The standard compiler for Chroma.",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "tsc -d && node dist/index.js",
+    "build": "tsc -d"
   },
   "author": "Chroma",
   "license": "MIT",
-  "dependencies": {
-    "@chromajs/compiler": "workspace:^"
-  },
+  "files": [
+    "dist/"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "type": "module"
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@chromajs/compiler": "workspace:^"
+  }
 }

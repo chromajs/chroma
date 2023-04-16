@@ -1,5 +1,5 @@
-export default function clean(raw) {
-  let tabs = 0;
+export default function clean(raw: string) {
+  let tabs: number | undefined = 0;
 
   raw = raw
     .split(/[\n\r]/)
