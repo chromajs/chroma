@@ -1,22 +1,13 @@
 {
   "name": "@chromajs/compiler",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "The compiler powering Chroma, a library for integrating markdown anywhere.",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "tsc -d && node dist/index.js",
-    "build": "tsc -d"
+    "dev": "node src/index.js"
   },
   "author": "Chroma",
   "license": "MIT",
-  "files": [
-    "dist/"
-  ],
-  "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "^18.15.11",
-    "typescript": "^5.0.4"
-  },
   "dependencies": {
     "highlight.js": "^11.7.0",
     "juice": "^9.0.0",
@@ -24,5 +15,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "type": "module"
 }
