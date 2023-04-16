@@ -5,7 +5,7 @@ import style from './utils/style';
 export default function compiler(
   raw: string,
   opts: {
-    theme: 'light' | 'dark' | 'black';
+    theme: 'light' | 'dark' | 'dim';
   }
 ) {
   [...raw.matchAll(/\(chroma\)(.*)\(\/chroma\)/gims)].forEach(chroma => {
