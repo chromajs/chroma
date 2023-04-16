@@ -13,13 +13,6 @@ importers:
       '@chromajs/compiler':
         specifier: workspace:^
         version: link:../compiler
-    devDependencies:
-      '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
 
   packages/compiler:
     dependencies:

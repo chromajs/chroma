@@ -2,4 +2,3 @@ node_modules
 .turbo
 
 dist
-bin

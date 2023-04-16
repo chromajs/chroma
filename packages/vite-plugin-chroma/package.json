@@ -9,6 +9,9 @@
   },
   "author": "Chroma",
   "license": "MIT",
+  "files": [
+    "dist/"
+  ],
   "devDependencies": {
     "@types/node": "^18.15.11",
     "typescript": "^5.0.4"

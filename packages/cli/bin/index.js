@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import chroma from '@chromajs/compiler';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 
 if (process.argv[2] === '-h') {
   console.log(`
@@ -29,7 +29,7 @@ if (
 
 (async () => {
   const files = await fs.readdir(srcDir, 'utf-8');
-  const exts = new Set<string>();
+  const exts = new Set();
 
   for (const file of files) {
     const ext = path.parse(file).ext;
