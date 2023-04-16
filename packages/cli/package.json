@@ -1,6 +1,6 @@
 {
   "name": "@chromajs/cli",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "The CLI compiler for Chroma, a library that lets you integrate markdown anywhere.",
   "main": "bin/index.js",
   "bin": {
@@ -20,5 +20,6 @@
   "preferGlobal": true,
   "dependencies": {
     "@chromajs/compiler": "workspace:^"
-  }
+  },
+  "type": "module"
 }
