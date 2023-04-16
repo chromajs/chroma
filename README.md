@@ -2,6 +2,10 @@
 
 The ridiculously simple library for integrating markdown everywhere. This monorepo contains all the source code for our compiler, CLI tool, & Vite plugin. If you're looking to create a Chroma project, read on.
 
+## Demo
+
+https://user-images.githubusercontent.com/120335722/232350651-dde66478-5d6c-4973-a22f-2b26df1fd47d.mp4
+
 ## Installation
 
 To use Chroma, you can either use the Vite plugin or the CLI tool.
