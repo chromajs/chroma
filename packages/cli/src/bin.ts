@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import chroma from '@chromajs/compiler';
+import { compiler } from '@chromajs/compiler';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
@@ -42,7 +42,7 @@ if (
       }
     } else if (exts.size === 0 || exts.has(ext)) {
       const data = await fs.readFile(path.join(srcDir, file), 'utf-8');
-      const result = chroma(data, { theme });
+      const result = compiler(data, { theme });
 
       await fs.writeFile(path.join(outDir, file), result);
     }
