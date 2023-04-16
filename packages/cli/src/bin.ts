@@ -1,65 +1,46 @@
 #!/usr/bin/env node
 
 import { compiler } from '@chromajs/compiler';
-import { promises as fs } from 'node:fs';
-import { join, parse } from 'node:path';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from 'fs';
+import { join, parse } from 'path';
 
-(async () => {
-  const args = process.argv.slice(2);
+const [src, dist, theme] = process.argv.slice(2);
 
-  if (args[0] === '-h') {
-    console.log(`
-      chroma cli :: help
+if (src === '-h' || src === '--help') {
+  console.log(`
+    chroma cli
 
-      COMMANDS
-    > @chromajs/cli -h                            logs this help menu
-    > @chromajs/cli <srcdir> <outdir> <theme>     compiles <srcdir> to <outdir> with <theme>
+  > @chromajs/cli -h --help                   displays this help menu
+  > @chromajs/cli <srcdir> <outdir> <theme>   compiles <srcdir> to <outdir> with <theme>
   `);
-    return;
+  process.exit(0);
+}
+
+const exts = [...JSON.parse(readFileSync('.chromarc.json', 'utf-8')).exts];
+
+if (!existsSync(dist)) {
+  mkdirSync(dist);
+}
+
+const files = readdirSync(src, { withFileTypes: true })
+  .filter(file => file.isFile() && exts.includes(parse(file.name).ext))
+  .map(file => file.name);
+
+for (const file of files) {
+  const srcPath = join(src, file);
+  const distPath = join(dist, file);
+
+  const content = readFileSync(srcPath, 'utf-8');
+
+  if (exts.includes(parse(file).ext)) {
+    writeFileSync(distPath, compiler(content, { theme }));
+  } else {
+    writeFileSync(distPath, content);
   }
-
-  const [srcDir, outDir, theme] = args;
-
-  if (
-    typeof srcDir !== 'string' ||
-    typeof outDir !== 'string' ||
-    !['dark', 'light', 'dim'].includes(theme)
-  ) {
-    throw new Error('invalid <srcdir>, <outdir>, or <theme> was given');
-  }
-
-  const files = await fs.readdir(srcDir, 'utf-8');
-  const exts = new Set<string>();
-  const copyFiles: string[] = [];
-
-  for (const file of files) {
-    const ext = parse(file).ext;
-
-    if (ext === '.chromarc') {
-      const data = await fs.readFile(join(srcDir, file), 'utf-8');
-
-      for (const line of data.split(/[\n\r]/)) {
-        exts.add(line.trim());
-      }
-    } else {
-      copyFiles.push(file);
-    }
-  }
-
-  for (const file of files) {
-    const ext = parse(file).ext;
-
-    if (exts.size > 0 && !exts.has(ext)) {
-      continue;
-    }
-
-    const data = await fs.readFile(join(srcDir, file), 'utf-8');
-    const result = compiler(data, { theme });
-
-    await fs.writeFile(join(outDir, file), result);
-  }
-
-  for (const file of copyFiles) {
-    await fs.copyFile(join(srcDir, file), join(outDir, file));
-  }
-})();
+}
